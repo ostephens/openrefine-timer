@@ -1,0 +1,52 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column Surname at index 1 based on column Column 1 using expression grel:value.match(/([^\\s]*)\\s([A-Z]).\\s?(.*)/)[2]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "Surname",
+    "columnInsertIndex": 1,
+    "baseColumnName": "Column 1",
+    "expression": "grel:value.match(/([^\\s]*)\\s([A-Z]).\\s?(.*)/)[2]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Forename at index 1 based on column Column 1 using expression grel:value.match(/([^\\s]*)\\s([A-Z]).\\s?(.*)/)[0]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "Forename",
+    "columnInsertIndex": 1,
+    "baseColumnName": "Column 1",
+    "expression": "grel:value.match(/([^\\s]*)\\s([A-Z]).\\s?(.*)/)[0]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column Initial at index 1 based on column Column 1 using expression grel:value.match(/([^\\s]*)\\s([A-Z]).\\s?(.*)/)[1]",
+    "engineConfig": {
+      "mode": "row-based",
+      "facets": []
+    },
+    "newColumnName": "Initial",
+    "columnInsertIndex": 1,
+    "baseColumnName": "Column 1",
+    "expression": "grel:value.match(/([^\\s]*)\\s([A-Z]).\\s?(.*)/)[1]",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-removal",
+    "description": "Remove column Column 1",
+    "columnName": "Column 1"
+  },
+  {
+    "op": "core/column-move",
+    "description": "Move column Forename to position 0",
+    "columnName": "Forename",
+    "index": 0
+  }
+]
