@@ -11,14 +11,13 @@ OpenRefine must already be running and available on http://127.0.0.1:3333 to suc
 
 The script runs from the command line with the following flags:
 Usage: openrefine_scale_test.rb [options]
-    -f, --filename [FILENAME]        Name to use for data file to be used in testing
-    -p, --projectname [PROJECTNAME]  Name to use for OpenRefine project to be used for testing
-    -i, --increments [INCREMENTS]    Number of lines to increment data file by each run
-    -o [OPERATIONSFILE],             Valid JSON file of OpenRefine operations to carry out during testing
-        --operationsfile
-    -t, --timingsfile [TIMINGSFILE]  File to save the timings to
-    -r, --repeats [REPEATS]          Number of times to repeat each test to get average
-    -h, --help                       Show this message
+    * -f, --filename [FILENAME]        Name to use for data file to be used in testing
+    * -p, --projectname [PROJECTNAME]  Name to use for OpenRefine project to be used for testing
+    * -i, --increments [INCREMENTS]    Number of lines to increment data file by each run
+    * -o, --operationsfile [OPERATIONSFILE] Valid JSON file of OpenRefine operations to carry out during testing        
+    * -t, --timingsfile [TIMINGSFILE]  File to save the timings to
+    * -r, --repeats [REPEATS]          Number of times to repeat each test to get average
+    * -h, --help                       Show this message
 
 You'll need to enter correct values for all flags (except -h) to successfully run the script. For example:
 
