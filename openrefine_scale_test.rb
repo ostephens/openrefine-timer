@@ -77,6 +77,7 @@ filename = options[:filename]
 CSV.open(options[:timings], 'w', :write_headers=> true, :headers => ["lines","load","operations","export"]) do |writer|
     while(true)
         line_count = `wc -l "#{filename}"`.strip.split(' ')[0].to_i-1
+        puts "Lines: "+line_count.to_s
         load_total = 0
         operations_total = 0
         export_total = 0
@@ -87,7 +88,7 @@ CSV.open(options[:timings], 'w', :write_headers=> true, :headers => ["lines","lo
                 finish = Time.now
                 load_total += finish - start
             rescue
-                "Failed to load " + line_count.to_s + " lines"
+                puts "Failed to load " + line_count.to_s + " lines"
                 exit
             end
 
@@ -97,7 +98,7 @@ CSV.open(options[:timings], 'w', :write_headers=> true, :headers => ["lines","lo
                 finish = Time.now
                 operations_total += finish - start
             rescue
-                "Failed to do operations on " + line_count.to_s + " lines"
+                puts "Failed to do operations on " + line_count.to_s + " lines"
                 exit
             end
 
@@ -107,14 +108,14 @@ CSV.open(options[:timings], 'w', :write_headers=> true, :headers => ["lines","lo
                 finish = Time.now
                 export_total = finish - start
             rescue
-                "Failed to export " + line_count.to_s + " lines"
+                puts "Failed to export " + line_count.to_s + " lines"
                 exit
             end
 
             begin
                 prj.delete_project
             rescue
-                "Failed to delete project at" + line_count.to_s + " lines"
+                puts "Failed to delete project at" + line_count.to_s + " lines"
                 exit
             end
         end
