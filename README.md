@@ -20,9 +20,11 @@ Usage: openrefine_scale_test.rb [options]
     * -r, --repeats [REPEATS]          Number of times to repeat each test to get average
     * -h, --help                       Show this message
 
-You'll need to enter correct values for all flags (except -h) to successfully run the script. For example:
+You'll need to enter correct values for all flags (except -h and -o) to successfully run the script. For example:
 
 ./openrefine_scale_test.rb -f data.csv -p timings -i 25000 -o operations.json -t timings.csv -r 1
+
+If you omit the 'o' flag then no operations will be carried out on the data within OpenRefine -  the data will just be loaded and then exported.
 
 ##Caveats
 This script is meant to help give a rough idea of the limits of OpenRefine, not offer definitive information about its capacity. There are many factors that may affect the performance of OpenRefine including:

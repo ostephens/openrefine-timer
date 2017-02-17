@@ -42,7 +42,11 @@ end.parse!
 or_opts = {}
 or_opts["file_name"] = options[:filename]
 or_opts["project_name"] = options[:projectname]
-ops = File.read(options[:operations])
+if(options[:operations])
+    ops = File.read(options[:operations])
+else
+    ops = false
+end
 reps = options[:reps].to_i
 
 class FakeData
@@ -77,7 +81,7 @@ filename = options[:filename]
 CSV.open(options[:timings], 'w', :write_headers=> true, :headers => ["lines","load","operations","export"]) do |writer|
     while(true)
         line_count = `wc -l "#{filename}"`.strip.split(' ')[0].to_i-1
-        puts "Lines: "+line_count.to_s
+        puts "Lines in test data file: "+line_count.to_s
         load_total = 0
         operations_total = 0
         export_total = 0
@@ -91,15 +95,18 @@ CSV.open(options[:timings], 'w', :write_headers=> true, :headers => ["lines","lo
                 puts "Failed to load " + line_count.to_s + " lines"
                 exit
             end
-
-            begin
-                start = Time.now
-                prj.apply_operations(ops)
-                finish = Time.now
-                operations_total += finish - start
-            rescue
-                puts "Failed to do operations on " + line_count.to_s + " lines"
-                exit
+            if(ops)
+                begin
+                    start = Time.now
+                    prj.apply_operations(ops)
+                    finish = Time.now
+                    operations_total += finish - start
+                rescue
+                    puts "Failed to do operations on " + line_count.to_s + " lines"
+                    exit
+                end
+            else
+                operations_total = 0
             end
 
             begin
